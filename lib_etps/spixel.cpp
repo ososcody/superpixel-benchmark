@@ -75,7 +75,7 @@ void ProcessFilesBatch(SPSegmentationParameters& params, const vector<string>& f
 
     for (const string& f : files) {
         string fileName = fileDir + f;
-        Mat image = imread(fileName, CV_LOAD_IMAGE_COLOR);
+        Mat image = imread(fileName, cv::IMREAD_COLOR);
 
         if (image.rows == 0 || image.cols == 0) {
             cout << "Failed reading image '" << fileName << "'" << endl;
@@ -121,8 +121,8 @@ void ProcessFilesStereoBatch(SPSegmentationParameters& params, const vector<stri
     for (const string& f : files) {
         string fileName = fileDir + f;
         string dispFileName = dispPattern.empty() ? dispDir : ChangeExtension(dispDir + f, dispPattern);
-        Mat image = imread(fileName, CV_LOAD_IMAGE_COLOR);
-        Mat dispImage = imread(dispFileName, CV_LOAD_IMAGE_ANYDEPTH);
+        Mat image = imread(fileName, cv::IMREAD_COLOR);
+        Mat dispImage = imread(dispFileName, cv::IMREAD_ANYDEPTH);
 
         if (image.rows == 0 || image.cols == 0) {
             cout << "Failed reading image '" << fileName << "'" << endl;
@@ -171,8 +171,8 @@ void ProcessFilesStereoBatchSGM(SPSegmentationParameters& params, const vector<s
     for (const string& f : files) {
         string leftFileName = leftFileDir + f;
         string rightFileName = rightIsName ? rightFileDir : rightFileDir + f;
-        Mat leftImage = imread(leftFileName, CV_LOAD_IMAGE_COLOR);
-        Mat rightImage = imread(rightFileName, CV_LOAD_IMAGE_COLOR);
+        Mat leftImage = imread(leftFileName, cv::IMREAD_COLOR);
+        Mat rightImage = imread(rightFileName, cv::IMREAD_COLOR);
 
         if (leftImage.empty()) {
             cout << "Failed reading left image '" << leftImage << "'" << endl;
